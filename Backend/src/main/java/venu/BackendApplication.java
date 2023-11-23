@@ -1,13 +1,13 @@
-package rpcc;
+package venu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestorativePracticesCreativeClusterApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestorativePracticesCreativeClusterApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
 
 }

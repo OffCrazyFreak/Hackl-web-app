@@ -1,12 +1,12 @@
-package rpcc.service.impl;
+package venu.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import rpcc.dao.UserRepository;
-import rpcc.domain.User;
-import rpcc.service.NotFoundException;
-import rpcc.service.UserService;
+import venu.dao.UserRepository;
+import venu.domain.User;
+import venu.service.NotFoundException;
+import venu.service.UserService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package rpcc.service;
+package venu.service;
 
 
 import org.springframework.http.HttpStatus;

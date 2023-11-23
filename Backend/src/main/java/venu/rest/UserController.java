@@ -1,12 +1,12 @@
-package rpcc.rest;
+package venu.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rpcc.domain.User;
-import rpcc.service.NotFoundException;
-import rpcc.service.UserService;
+import venu.domain.User;
+import venu.service.NotFoundException;
+import venu.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;

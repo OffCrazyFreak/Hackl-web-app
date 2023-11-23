@@ -1,4 +1,4 @@
-package rpcc.domain;
+package venu.domain;
 
 import jakarta.persistence.*;
 import javax.validation.constraints.*;
@@ -10,7 +10,7 @@ public class User {
     private Long id;
 
     @NotBlank(message = "Username is required")
-    @Size(min = 6, max = 20, message = "Username must be between 6 and 20 characters")
+    @Size(min = 5, max = 20, message = "Username must be between 5 and 20 characters")
     @Column(length = 20, nullable = false, unique = true)
     private String username;
 
@@ -19,6 +19,10 @@ public class User {
             message = "Password must contain at least one uppercase letter, one lowercase letter, one number, one special character (!@#$%^&*()-_+=[]{}|/<>?~:;\"',.), and be between 12 and 20 characters")
     @Column(length = 20, nullable = false)
     private String password;
+
+    // TODO: add authority enum (ADMINISTRATOR, MODERATOR, myb GUEST if needed)
+    // ADMINISTRATOR manages users and spaces
+    // MODERATOR manages reservations for spaces the ADMINISTRATOR assigned to them
 
     public Long getId() {
         return id;

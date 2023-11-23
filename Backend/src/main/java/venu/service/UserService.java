@@ -1,6 +1,6 @@
-package rpcc.service;
+package venu.service;
 
-import rpcc.domain.User;
+import venu.domain.User;
 
 import java.util.List;
 

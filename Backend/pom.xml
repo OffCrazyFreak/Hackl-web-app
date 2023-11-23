@@ -8,11 +8,11 @@
 		<version>3.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>rpcc</groupId>
-	<artifactId>restorative-practices-creative-cluster</artifactId>
+	<groupId>ven-u</groupId>
+	<artifactId>ven-u</artifactId>
 	<version>1.0.0</version>
-	<name>RestorativePracticesCreativeCluster</name>
-	<description>The project Restorative Practices is aimed at connecting like minded organizations focused on sustainability and bioart practices as a way to enhance better future transmission of knowledge and build new realities through this intersection via mapping of creative potential.</description>
+	<name>Ven-U</name>
+	<description>Web app for reserving city venues/spaces. Created for Hackl hackathon Zagreb 2023.</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
