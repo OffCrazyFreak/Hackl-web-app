@@ -14,16 +14,8 @@ public class Venue {
     @Column(length = 120, nullable = false, unique = true)
     private String name;
 
-    @Size(max = 400, message = "Description must be under 400 characters")
-    @Column(length = 400, nullable = false)
-    private String description;
-
     @NotBlank(message = "Address is required")
     private String address;
-
-    @Size(max = 120, message = "Web URL must be less than or equal to 120 characters")
-    @Column(length = 120)
-    private String webUrl;
 
     // TODO: Add user 1-N venue so that each venue must have a user (moderator)
 
@@ -43,6 +35,14 @@ public class Venue {
     @Size(min = 2, max = 20, message = "Contact tel must be between 2 and 20 characters")
     @Column(length = 20, nullable = false)
     private String contactTel;
+
+    @Size(max = 120, message = "Web URL must be less than or equal to 120 characters")
+    @Column(length = 120)
+    private String webUrl;
+
+    @Size(max = 400, message = "Description must be under 400 characters")
+    @Column(length = 400)
+    private String description;
 
     public Long getId() {
         return id;

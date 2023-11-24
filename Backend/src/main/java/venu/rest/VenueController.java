@@ -10,6 +10,7 @@ import venu.service.VenueService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/venues")
@@ -23,20 +24,17 @@ public class VenueController {
         return ResponseEntity.ok(venues);
     }
 
+    @GetMapping("/{id}")
+    public  ResponseEntity<Venue> getVenues(@PathVariable Long id) {
+        Venue venue = venueService.getVenue(id);
+        return ResponseEntity.ok(venue);
+    }
+
     @PostMapping("")
     public ResponseEntity<Venue> addVenue(@Valid @RequestBody Venue venue) {
         Venue addedVenue = venueService.addVenue(venue);
         if (addedVenue != null)
             return ResponseEntity.status(HttpStatus.CREATED).body(addedVenue);
-        else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-    }
-
-    @PostMapping("/import")
-    public ResponseEntity<List<Venue>> importVenues(@RequestBody List<Venue> venues) {
-        List<Venue> importedVenues = venueService.saveAllVenues(venues);
-        if (importedVenues != null)
-            return ResponseEntity.status(HttpStatus.CREATED).body(importedVenues);
         else
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
@@ -59,6 +57,15 @@ public class VenueController {
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Venue with ID " + id + " not found");
         }
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity<List<Venue>> importVenues(@RequestBody List<Venue> venues) {
+        List<Venue> importedVenues = venueService.saveAllVenues(venues);
+        if (importedVenues != null)
+            return ResponseEntity.status(HttpStatus.CREATED).body(importedVenues);
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 }

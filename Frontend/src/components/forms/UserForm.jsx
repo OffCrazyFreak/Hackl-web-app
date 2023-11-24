@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { useState, useEffect } from "react";
 
-import TextInput from "./TextInput";
+import TextInput from "./partial/TextInput";
 
 export default function UserForm({ openModal, setOpenModal, mode }) {
   const [users, setUsers] = useState([

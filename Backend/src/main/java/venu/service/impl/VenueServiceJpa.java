@@ -9,6 +9,7 @@ import venu.service.NotFoundException;
 import venu.service.VenueService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VenueServiceJpa implements VenueService {
@@ -21,15 +22,20 @@ public class VenueServiceJpa implements VenueService {
     }
 
     @Override
+    public Venue getVenue(Long id) {
+        Optional<Venue> venue = venueRepo.findById(id);
+        if (venue.isEmpty()) {
+            throw new NotFoundException("Venue with id " + id + " not found.");
+        }
+
+        return venue.get();
+    }
+
+    @Override
     public Venue addVenue(Venue venue) {
         Assert.notNull(venue, "Venue object must be given.");
 
         return venueRepo.save(venue);
-    }
-
-    @Override
-    public List<Venue> saveAllVenues(List<Venue> venues) {
-        return venueRepo.saveAll(venues);
     }
 
     @Override
@@ -56,6 +62,11 @@ public class VenueServiceJpa implements VenueService {
         }
 
         venueRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Venue> saveAllVenues(List<Venue> venues) {
+        return venueRepo.saveAll(venues);
     }
 
 }

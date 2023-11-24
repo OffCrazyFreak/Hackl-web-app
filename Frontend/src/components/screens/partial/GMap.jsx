@@ -21,13 +21,7 @@ import { useEffect, useState } from "react";
 
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
-function GMap({
-  google,
-  userIsLoggedIn,
-  visibleOrganizations,
-  handleEdit,
-  handleDelete,
-}) {
+function GMap({ google, visibleVenues, handleEdit, handleDelete }) {
   const [orgMarkers, setOrgMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
@@ -43,39 +37,36 @@ function GMap({
     const geocoder = new google.maps.Geocoder();
 
     // Geocode each organization's address with a delay between markers
-    visibleOrganizations.forEach((organization, index) => {
+    visibleVenues.forEach((venue, index) => {
       setTimeout(() => {
-        geocoder.geocode(
-          { address: organization.address },
-          (results, status) => {
-            if (status === "OK") {
-              const location = results[0].geometry.location;
+        geocoder.geocode({ address: venue.address }, (results, status) => {
+          if (status === "OK") {
+            const location = results[0].geometry.location;
 
-              const marker = {
-                organization: organization,
-                position: { lat: location.lat(), lng: location.lng() },
-              };
-              setOrgMarkers((prevMarkers) => [...prevMarkers, marker]);
-            } else {
-              console.error("Geocoding failed:", status);
-            }
+            const marker = {
+              organization: venue,
+              position: { lat: location.lat(), lng: location.lng() },
+            };
+            setOrgMarkers((prevMarkers) => [...prevMarkers, marker]);
+          } else {
+            console.error("Geocoding failed:", status);
           }
-        );
+        });
       }, index * 200);
     });
-  }, [google.maps.Geocoder, visibleOrganizations]);
+  }, [google.maps.Geocoder, visibleVenues]);
 
   return (
     <>
       <Map
         google={google}
-        zoom={4}
+        zoom={12}
         style={{
           borderRadius: 16,
 
           marginBottom: 20,
         }}
-        initialCenter={{ lat: 52.52, lng: 13.4049 }}
+        initialCenter={{ lat: 45.815, lng: 15.9819 }}
       >
         {orgMarkers.map((marker, index) => (
           <Marker
@@ -275,7 +266,7 @@ function GMap({
               )}
             </List>
 
-            {userIsLoggedIn && (
+            {/* {userIsLoggedIn && (
               <Box
                 style={{
                   paddingBlock: "5%",
@@ -311,7 +302,7 @@ function GMap({
                   Delete
                 </Button>
               </Box>
-            )}
+            )} */}
           </Box>
         </Drawer>
       )}
